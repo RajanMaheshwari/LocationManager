@@ -52,17 +52,17 @@ class CustomLocationAddressViewController: UIViewController {
                 guard let _ = location else {
                     return
                 }
-                print(placemark?.administrativeArea)
-                print(placemark?.name)
-                print(placemark?.country)
-                print(placemark?.areasOfInterest)
-                print(placemark?.isoCountryCode)
-                print(placemark?.location)
-                print(placemark?.locality)
-                print(placemark?.subLocality)
-                print(placemark?.postalCode)
-                print(placemark?.timeZone)
-                print(placemark?.addressDictionary?.description)
+                print(placemark?.administrativeArea ?? "")
+                print(placemark?.name ?? "")
+                print(placemark?.country ?? "")
+                print(placemark?.areasOfInterest ?? "")
+                print(placemark?.isoCountryCode ?? "")
+                print(placemark?.location ?? "")
+                print(placemark?.locality ?? "")
+                print(placemark?.subLocality ?? "")
+                print(placemark?.postalCode ?? "")
+                print(placemark?.timeZone ?? "")
+                print(placemark?.addressDictionary?.description ?? "")
                 
                 let address = placemark?.addressDictionary?["FormattedAddressLines"] as! NSArray
                 self.addressLabel.text = address.description

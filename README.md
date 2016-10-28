@@ -42,6 +42,14 @@ LocationManager.sharedInstance.getCurrentReverseGeoCodedLocation { (location:CLL
             print(placemark?.addressDictionary?.description)
         }
 ```
+<h2>For Swift 3.0.1</h2>
+
+Nil-Coalescing Operator is mandatory if you are printing an optional value without unwrapping it else it will give you warning.
+
+```swift         
+print(placemark?.addressDictionary?.description ?? "")
+```
+
 
 You can also reverse geocode any address just by providing latitude and longitude in a CLLocation object coming from Google/ Apple or by your API.
 
@@ -61,6 +69,13 @@ LocationManager.sharedInstance.getReverseGeoCodedLocation(location: customLocati
             print(placemark?.addressDictionary?.description)
         }
 ```
+
+For Swift 3.0.1, Nil-Coalescing Operator is mandatory if you are printing an optional value without unwrapping it else it will give you warning.
+
+```swift         
+print(placemark?.addressDictionary?.description ?? "")
+```
+
 We can also modify the amount of time given for the callback while fetching the location. Currenly the default value is 1 second. You can use ```setTimerForLocation``` method.
 
 ```swift

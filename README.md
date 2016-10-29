@@ -76,6 +76,28 @@ For Swift 3.0.1, Nil-Coalescing Operator is mandatory if you are printing an opt
 print(placemark?.addressDictionary?.description ?? "")
 ```
 
+You can now get the Latitude and Longitude of a address entered as a string
+
+```swift
+LocationManager.sharedInstance.getReverseGeoCodedLocation(address: yourAddress, completionHandler: { (location:CLLocation?, placemark:CLPlacemark?, error:NSError?) in
+                
+            if error != nil {
+                print((error?.localizedDescription)!)
+                return
+            }
+                
+            if placemark == nil {
+                print("Location can't be fetched")
+                return
+            }
+               
+            print(placemark?.addressDictionary?.description ?? "")
+            print((placemark?.location?.coordinate.latitude)!)
+            print((placemark?.location?.coordinate.longitude)!)
+                
+        })
+```
+
 We can also modify the amount of time given for the callback while fetching the location. Currenly the default value is 1 second. You can use ```setTimerForLocation``` method.
 
 ```swift

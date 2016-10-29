@@ -24,7 +24,7 @@ class LocationManager: NSObject,CLLocationManagerDelegate {
     private var locationFetchTimeInSeconds = 1.0
     
     typealias LocationClosure = ((_ location:CLLocation?,_ error: NSError?)->Void)
-    private var completionHandler: LocationClosure?
+    private var locationCompletionHandler: LocationClosure?
     
     typealias ReverseGeoLocationClosure = ((_ location:CLLocation?, _ placemark:CLPlacemark?,_ error: NSError?)->Void)
     private var geoLocationCompletionHandler: ReverseGeoLocationClosure?
@@ -130,7 +130,7 @@ class LocationManager: NSObject,CLLocationManagerDelegate {
         //Resetting last location
         lastLocation = nil
         
-        self.completionHandler = completionHandler
+        self.locationCompletionHandler = completionHandler
         
         setupLocationManager()
     }
@@ -327,7 +327,7 @@ class LocationManager: NSObject,CLLocationManagerDelegate {
     //MARK:- Final closure/callback
     private func didComplete(location: CLLocation?,error: NSError?) {
         locationManager?.stopUpdatingLocation()
-        completionHandler?(location,error)
+        locationCompletionHandler?(location,error)
         locationManager?.delegate = nil
         locationManager = nil
     }

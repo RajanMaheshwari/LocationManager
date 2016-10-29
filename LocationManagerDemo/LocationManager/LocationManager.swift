@@ -146,7 +146,22 @@ class LocationManager: NSObject,CLLocationManagerDelegate {
 
     }
     
-    //Get current location with placemark
+    func getReverseGeoCodedLocation(address:String,completionHandler:@escaping ReverseGeoLocationClosure) {
+        
+        //Cancelling the previous selector handlers if any
+        NSObject.cancelPreviousPerformRequests(withTarget: self)
+        
+        self.geoLocationCompletionHandler = nil
+        self.geoLocationCompletionHandler = completionHandler
+        if !reverseGeocoding {
+            reverseGeocoding = true
+            self.reverseGeoCoding(address: address)
+        }
+    }
+    
+    /// Get current location with placemark
+    ///
+    /// - Parameter completionHandler: will return Location,Placemark and error
     func getCurrentReverseGeoCodedLocation(completionHandler:@escaping ReverseGeoLocationClosure) {
         
         if !reverseGeocoding {
@@ -184,6 +199,40 @@ class LocationManager: NSObject,CLLocationManagerDelegate {
                 let placemark = placemarks![0]
                 if let _ = location {
                     self.didCompleteGeocoding(location: location, placemark: placemark, error: nil)
+                } else {
+                    self.didCompleteGeocoding(location: nil, placemark: nil, error: NSError(
+                        domain: self.classForCoder.description(),
+                        code:Int(CLAuthorizationStatus.denied.rawValue),
+                        userInfo:
+                        [NSLocalizedDescriptionKey:LocationErrors.invalidLocation.rawValue,
+                         NSLocalizedFailureReasonErrorKey:LocationErrors.invalidLocation.rawValue,
+                         NSLocalizedRecoverySuggestionErrorKey:LocationErrors.invalidLocation.rawValue]))
+                }
+                if(!CLGeocoder().isGeocoding){
+                    CLGeocoder().cancelGeocode()
+                }
+            }else{
+                print("Problem with the data received from geocoder")
+            }
+        })
+    }
+    
+    func reverseGeoCoding(address:String) {
+        CLGeocoder().geocodeAddressString(address, completionHandler: {(placemarks, error)->Void in
+            if (error != nil) {
+                //Reverse geocoding failed
+                self.didCompleteGeocoding(location: nil, placemark: nil, error: NSError(
+                    domain: self.classForCoder.description(),
+                    code:Int(CLAuthorizationStatus.denied.rawValue),
+                    userInfo:
+                    [NSLocalizedDescriptionKey:LocationErrors.reverseGeocodingFailed.rawValue,
+                     NSLocalizedFailureReasonErrorKey:LocationErrors.reverseGeocodingFailed.rawValue,
+                     NSLocalizedRecoverySuggestionErrorKey:LocationErrors.reverseGeocodingFailed.rawValue]))
+                return
+            }
+            if placemarks!.count > 0 {
+                if let placemark = placemarks?[0] {
+                    self.didCompleteGeocoding(location: placemark.location, placemark: placemark, error: nil)
                 } else {
                     self.didCompleteGeocoding(location: nil, placemark: nil, error: NSError(
                         domain: self.classForCoder.description(),

@@ -11,7 +11,7 @@
 		E5238F2E1DBB83D30051907A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5238F2C1DBB83D30051907A /* ViewController.swift */; };
 		E5238F301DBB971D0051907A /* CustomLocationAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5238F2F1DBB971D0051907A /* CustomLocationAddressViewController.swift */; };
 		E562A7D81DC5132700FF86F1 /* CustomAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E562A7D71DC5132700FF86F1 /* CustomAddressViewController.swift */; };
-		E562A7DB1DC5215100FF86F1 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E562A7DA1DC5215100FF86F1 /* LocationManager.swift */; };
+		E562A7DE1DC521EC00FF86F1 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E562A7DD1DC521EC00FF86F1 /* LocationManager.swift */; };
 		E582B5E71DBB817B0002D448 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582B5E61DBB817B0002D448 /* AppDelegate.swift */; };
 		E582B5EC1DBB817B0002D448 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E582B5EA1DBB817B0002D448 /* Main.storyboard */; };
 		E582B5EE1DBB817B0002D448 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E582B5ED1DBB817B0002D448 /* Assets.xcassets */; };
@@ -23,7 +23,7 @@
 		E5238F2C1DBB83D30051907A /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E5238F2F1DBB971D0051907A /* CustomLocationAddressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLocationAddressViewController.swift; sourceTree = "<group>"; };
 		E562A7D71DC5132700FF86F1 /* CustomAddressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAddressViewController.swift; sourceTree = "<group>"; };
-		E562A7DA1DC5215100FF86F1 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		E562A7DD1DC521EC00FF86F1 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		E582B5E31DBB817B0002D448 /* LocationManagerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocationManagerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E582B5E61DBB817B0002D448 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E582B5EB1DBB817B0002D448 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -54,10 +54,10 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		E562A7D91DC5215100FF86F1 /* LocationManager */ = {
+		E562A7DC1DC521EC00FF86F1 /* LocationManager */ = {
 			isa = PBXGroup;
 			children = (
-				E562A7DA1DC5215100FF86F1 /* LocationManager.swift */,
+				E562A7DD1DC521EC00FF86F1 /* LocationManager.swift */,
 			);
 			path = LocationManager;
 			sourceTree = SOURCE_ROOT;
@@ -81,7 +81,7 @@
 		E582B5E51DBB817B0002D448 /* LocationManagerDemo */ = {
 			isa = PBXGroup;
 			children = (
-				E562A7D91DC5215100FF86F1 /* LocationManager */,
+				E562A7DC1DC521EC00FF86F1 /* LocationManager */,
 				E5238F2A1DBB83D30051907A /* ViewControllers */,
 				E582B5E61DBB817B0002D448 /* AppDelegate.swift */,
 				E582B5EA1DBB817B0002D448 /* Main.storyboard */,
@@ -167,7 +167,7 @@
 			files = (
 				E582B5E71DBB817B0002D448 /* AppDelegate.swift in Sources */,
 				E5238F2D1DBB83D30051907A /* MapViewController.swift in Sources */,
-				E562A7DB1DC5215100FF86F1 /* LocationManager.swift in Sources */,
+				E562A7DE1DC521EC00FF86F1 /* LocationManager.swift in Sources */,
 				E5238F2E1DBB83D30051907A /* ViewController.swift in Sources */,
 				E562A7D81DC5132700FF86F1 /* CustomAddressViewController.swift in Sources */,
 				E5238F301DBB971D0051907A /* CustomLocationAddressViewController.swift in Sources */,

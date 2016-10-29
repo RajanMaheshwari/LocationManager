@@ -76,7 +76,7 @@ For Swift 3.0.1, Nil-Coalescing Operator is mandatory if you are printing an opt
 print(placemark?.addressDictionary?.description ?? "")
 ```
 
-You can now get the Latitude and Longitude of a address entered as a string
+You can now get the Latitude and Longitude of an address entered as a string
 
 ```swift
 LocationManager.sharedInstance.getReverseGeoCodedLocation(address: yourAddress, completionHandler: { (location:CLLocation?, placemark:CLPlacemark?, error:NSError?) in

@@ -103,6 +103,6 @@ We can also modify the amount of time given for the callback while fetching the 
 ```swift
 LocationManager.sharedInstance.setTimerForLocation(seconds: 2.0)
 ```
-Generally recommend to keep it to 1 second in order to avoid extra delay.
+Generally, I recommend to keep it between 1-3 seconds.
 
 CocoaPods and Carthage support coming soon!!

@@ -42,7 +42,7 @@ LocationManager.sharedInstance.getCurrentReverseGeoCodedLocation { (location:CLL
             print(placemark?.addressDictionary?.description)
         }
 ```
-<h2>For Swift 3.0.1</h2>
+<h2>For Swift 3.0.1+ versions</h2>
 
 Nil-Coalescing Operator is mandatory if you are printing an optional value without unwrapping it else it will give you warning.
 

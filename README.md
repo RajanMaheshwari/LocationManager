@@ -70,7 +70,7 @@ LocationManager.sharedInstance.getReverseGeoCodedLocation(location: customLocati
         }
 ```
 
-For Swift 3.0.1, Nil-Coalescing Operator is mandatory if you are printing an optional value without unwrapping it else it will give you warning.
+From Swift 3.0.1, Nil-Coalescing Operator is mandatory if you are printing an optional value without unwrapping it else it will give you warning.
 
 ```swift         
 print(placemark?.addressDictionary?.description ?? "")

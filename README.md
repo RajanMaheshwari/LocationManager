@@ -1,11 +1,11 @@
 # LocationManager
-Location Manager is a library written in Swift 3.0 (upgraded to Swift 3.0.1) for iOS which handles the location features provided by Apple. It is fairly simple to use where you can just get your current location, current address, custom location and custom address by just a single method call.
+Location Manager is a library written in Swift 4.0 (upgraded to Swift 4.1) for iOS which handles the location features provided by Apple. It is fairly simple to use where you can just get your current location, current address, custom location and custom address by just a single method call.
 
 #Requirements
 
 iOS 9.0+<br>
-Xcode 8.0+<br>
-Swift 3.0+
+Xcode 9.0+<br>
+Swift 4.0+
 
 How to use it.<br>
 Just add ```LocationManager.swift``` into your project

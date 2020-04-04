@@ -10,7 +10,7 @@ Swift 5.0+
 How to use it.<br>
 Just add ```LocationManager.swift``` into your project
 
-In order to just get your current Latitude and Longitute
+In order to just get your current Latitude and Longitude
 
 ```swift
 LocationManager.sharedInstance.getLocation { (location:CLLocation?, error:NSError?) in

@@ -111,6 +111,13 @@ class ViewController: UIViewController {
         }
     }
     
-
+    @IBAction func locationServiceEnabledAction(_ sender: UIButton) {
+        if LocationManager.shared.isLocationEnabled() {
+            self.alertMessage(message: "Location Services are enabled", buttonText: "OK", completionHandler: nil)
+        } else {
+            self.alertMessage(message: "Location Services are disabled", buttonText: "OK", completionHandler: nil)
+        }
+    }
+    
 }
 

@@ -100,6 +100,16 @@ final class LocationManager: NSObject {
         lastLocation = nil
     }
     
+//MARK:- Public Methods
+    
+    /// Check if location is enabled on device or not
+    ///
+    /// - Parameter completionHandler: nil
+    /// - Returns: Bool
+    func isLocationEnabled() -> Bool {
+        return CLLocationManager.locationServicesEnabled()
+    }
+    
     /// Get current location
     ///
     /// - Parameter completionHandler: will return CLLocation object which is the current location of the user and NSError in case of error

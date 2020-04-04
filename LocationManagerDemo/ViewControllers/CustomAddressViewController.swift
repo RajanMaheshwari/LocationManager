@@ -26,7 +26,7 @@ class CustomAddressViewController: UIViewController {
     
     @IBAction func getLatLongButtonPressed(_ sender: Any) {
         if addressTextView.text.count > 0 {
-            LocationManager.sharedInstance.getReverseGeoCodedLocation(address: addressTextView.text!, completionHandler: { (location:CLLocation?, placemark:CLPlacemark?, error:NSError?) in
+            LocationManager.shared.getReverseGeoCodedLocation(address: addressTextView.text!, completionHandler: { (location:CLLocation?, placemark:CLPlacemark?, error:NSError?) in
                 
                 if error != nil {
                     print((error?.localizedDescription)!)

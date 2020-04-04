@@ -34,7 +34,7 @@ final class LocationManager: NSObject {
     private var reverseGeocoding = false
     
     //Singleton Instance
-    static let sharedInstance: LocationManager = {
+    static let shared: LocationManager = {
         let instance = LocationManager()
         // setup code
         return instance

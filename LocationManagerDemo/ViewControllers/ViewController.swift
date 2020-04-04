@@ -42,7 +42,7 @@ class ViewController: UIViewController {
         
         self.resetLabels()
 
-        LocationManager.sharedInstance.getLocation { (location:CLLocation?, error:NSError?) in
+        LocationManager.shared.getLocation { (location:CLLocation?, error:NSError?) in
             
             if error != nil {
                 self.alertMessage(message: (error?.localizedDescription)!, buttonText: "OK", completionHandler: nil)
@@ -62,7 +62,7 @@ class ViewController: UIViewController {
         
         self.resetLabels()
 
-        LocationManager.sharedInstance.getLocation { (location:CLLocation?, error:NSError?) in
+        LocationManager.shared.getLocation { (location:CLLocation?, error:NSError?) in
             
             if error != nil {
                 self.alertMessage(message: (error?.localizedDescription)!, buttonText: "OK", completionHandler: nil)
@@ -83,7 +83,7 @@ class ViewController: UIViewController {
         
         self.resetLabels()
         
-        LocationManager.sharedInstance.getCurrentReverseGeoCodedLocation { (location:CLLocation?, placemark:CLPlacemark?, error:NSError?) in
+        LocationManager.shared.getCurrentReverseGeoCodedLocation { (location:CLLocation?, placemark:CLPlacemark?, error:NSError?) in
             if error != nil {
                 self.alertMessage(message: (error?.localizedDescription)!, buttonText: "OK", completionHandler: nil)
                 return

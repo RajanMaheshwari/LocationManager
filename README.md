@@ -98,7 +98,7 @@ LocationManager.shared.getReverseGeoCodedLocation(address: yourAddress, completi
         })
 ```
 
-Now you can check whether the location services are enabled or not using.
+Now you can check whether the location services are enabled or not using
 
 ```LocationManager.shared.isLocationEnabled()```
 

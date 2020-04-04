@@ -13,7 +13,7 @@ Just add ```LocationManager.swift``` into your project
 In order to just get your current Latitude and Longitude
 
 ```swift
-LocationManager.sharedInstance.getLocation { (location:CLLocation?, error:NSError?) in
+LocationManager.shared.getLocation { (location:CLLocation?, error:NSError?) in
             if error != nil {
                 print(error?.localizedDescription)
                 return
@@ -28,7 +28,7 @@ LocationManager.sharedInstance.getLocation { (location:CLLocation?, error:NSErro
 For getting the current address we can call the ```getCurrentReverseGeoCodedLocation``` method
 
 ```swift
-LocationManager.sharedInstance.getCurrentReverseGeoCodedLocation { (location:CLLocation?, placemark:CLPlacemark?, error:NSError?) in
+LocationManager.shared.getCurrentReverseGeoCodedLocation { (location:CLLocation?, placemark:CLPlacemark?, error:NSError?) in
             
             if error != nil {
                 print(error?.localizedDescription)
@@ -56,7 +56,7 @@ You can also reverse geocode any address just by providing latitude and longitud
 ```swift
 let customLocation = CLLocation(latitude: 22.76456, longitude: 77.42323)
         
-LocationManager.sharedInstance.getReverseGeoCodedLocation(location: customLocation) { (location:CLLocation?, placemark:CLPlacemark?, error:NSError?) in
+LocationManager.shared.getReverseGeoCodedLocation(location: customLocation) { (location:CLLocation?, placemark:CLPlacemark?, error:NSError?) in
             if error != nil {
                 print(error?.localizedDescription)
                 return
@@ -79,7 +79,7 @@ print(placemark?.addressDictionary?.description ?? "")
 You can now get the Latitude and Longitude of an address entered as a string
 
 ```swift
-LocationManager.sharedInstance.getReverseGeoCodedLocation(address: yourAddress, completionHandler: { (location:CLLocation?, placemark:CLPlacemark?, error:NSError?) in
+LocationManager.shared.getReverseGeoCodedLocation(address: yourAddress, completionHandler: { (location:CLLocation?, placemark:CLPlacemark?, error:NSError?) in
                 
             if error != nil {
                 print((error?.localizedDescription)!)
@@ -97,12 +97,5 @@ LocationManager.sharedInstance.getReverseGeoCodedLocation(address: yourAddress, 
                 
         })
 ```
-
-We can also modify the amount of time given for the callback while fetching the location. Currenly the default value is 1 second. You can use ```setTimerForLocation``` method.
-
-```swift
-LocationManager.sharedInstance.setTimerForLocation(seconds: 2.0)
-```
-Generally, I recommend to keep it between 1-3 seconds.
 
 CocoaPods and Carthage support coming soon!!

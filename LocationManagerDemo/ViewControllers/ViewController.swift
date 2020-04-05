@@ -53,7 +53,7 @@ class ViewController: UIViewController {
                 return
             }
             self.latitudeLabel.text = "\(location.coordinate.latitude)"
-            self.longitudeLabel.text = "\(location.coordinate.longitude))"
+            self.longitudeLabel.text = "\(location.coordinate.longitude)"
 
         }
     }

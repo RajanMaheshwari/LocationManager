@@ -18,10 +18,10 @@ LocationManager.shared.getLocation { (location:CLLocation?, error:NSError?) in
                 print(error?.localizedDescription)
                 return
             }
-            guard let _ = location else {
+            guard let location = location else {
                 return
             }
-            print("Latitude: \((location?.coordinate.latitude)!) Longitude: \((location?.coordinate.longitude)!)")
+            print("Latitude: \(location.coordinate.latitude) Longitude: \(location.coordinate.longitude)")
         }
 ```
 
@@ -34,12 +34,11 @@ LocationManager.shared.getCurrentReverseGeoCodedLocation { (location:CLLocation?
                 print(error?.localizedDescription)
                 return
             }
-            guard let _ = location else {
-                print("Unable to fetch location")
+            guard let location = location, let placemark = placemark else {
                 return
             }
             //We get the complete placemark and can fetch anything from CLPlacemark
-            print(placemark?.addressDictionary?.description)
+            print(placemark.addressDictionary?.description)
         }
 ```
 <h2>For Swift 3.0.1+ versions</h2>
@@ -47,7 +46,7 @@ LocationManager.shared.getCurrentReverseGeoCodedLocation { (location:CLLocation?
 Nil-Coalescing Operator is mandatory if you are printing an optional value without unwrapping it else it will give you warning.
 
 ```swift         
-print(placemark?.addressDictionary?.description ?? "")
+print(placemark.addressDictionary?.description ?? "")
 ```
 
 
@@ -61,19 +60,18 @@ LocationManager.shared.getReverseGeoCodedLocation(location: customLocation) { (l
                 print(error?.localizedDescription)
                 return
             }
-            guard let _ = location else {
-                print("Unable to fetch location")
+            guard let location = location, let placemark = placemark else {
                 return
             }
             //We get the complete placemark and can fetch anything from CLPlacemark
-            print(placemark?.addressDictionary?.description)
+            print(placemark.addressDictionary?.description)
         }
 ```
 
 From Swift 3.0.1, Nil-Coalescing Operator is mandatory if you are printing an optional value without unwrapping it else it will give you warning.
 
 ```swift         
-print(placemark?.addressDictionary?.description ?? "")
+print(placemark.addressDictionary?.description ?? "")
 ```
 
 You can now get the Latitude and Longitude of an address entered as a string
@@ -86,14 +84,13 @@ LocationManager.shared.getReverseGeoCodedLocation(address: yourAddress, completi
                 return
             }
                 
-            if placemark == nil {
-                print("Location can't be fetched")
+            guard let _ = location, let placemark = placemark else {
                 return
             }
                
-            print(placemark?.addressDictionary?.description ?? "")
-            print((placemark?.location?.coordinate.latitude)!)
-            print((placemark?.location?.coordinate.longitude)!)
+            print(placemark.addressDictionary?.description ?? "")
+            print((placemark.location?.coordinate.latitude)!)
+            print((placemark.location?.coordinate.longitude)!)
                 
         })
 ```

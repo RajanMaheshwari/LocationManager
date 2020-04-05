@@ -49,22 +49,22 @@ class CustomLocationAddressViewController: UIViewController {
                     self.alertMessage(message: (error?.localizedDescription)!, buttonText: "OK", completionHandler: nil)
                     return
                 }
-                guard let _ = location else {
+                guard let _ = location, let placemark = placemark else {
                     return
                 }
-                print(placemark?.administrativeArea ?? "")
-                print(placemark?.name ?? "")
-                print(placemark?.country ?? "")
-                print(placemark?.areasOfInterest ?? "")
-                print(placemark?.isoCountryCode ?? "")
-                print(placemark?.location ?? "")
-                print(placemark?.locality ?? "")
-                print(placemark?.subLocality ?? "")
-                print(placemark?.postalCode ?? "")
-                print(placemark?.timeZone ?? "")
-                print(placemark?.addressDictionary?.description ?? "")
+                print(placemark.administrativeArea ?? "")
+                print(placemark.name ?? "")
+                print(placemark.country ?? "")
+                print(placemark.areasOfInterest ?? "")
+                print(placemark.isoCountryCode ?? "")
+                print(placemark.location ?? "")
+                print(placemark.locality ?? "")
+                print(placemark.subLocality ?? "")
+                print(placemark.postalCode ?? "")
+                print(placemark.timeZone ?? "")
+                print(placemark.addressDictionary?.description ?? "")
                 
-                let address = placemark?.addressDictionary?["FormattedAddressLines"] as! NSArray
+                let address = placemark.addressDictionary?["FormattedAddressLines"] as! NSArray
                 self.addressLabel.text = address.description
                 
             }

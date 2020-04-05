@@ -33,15 +33,15 @@ class CustomAddressViewController: UIViewController {
                     return
                 }
                 
-                if placemark == nil {
+                guard let placemark = placemark else {
                     print("Location can't be fetched")
                     return
                 }
                 
-                print(placemark?.addressDictionary?.description ?? "")
+                print(placemark.addressDictionary?.description ?? "")
 
-                self.latitudeLabel.text = "\((placemark?.location?.coordinate.latitude)!)"
-                self.longitudeLabel.text = "\((placemark?.location?.coordinate.longitude)!)"
+                self.latitudeLabel.text = "\((placemark.location?.coordinate.latitude)!)"
+                self.longitudeLabel.text = "\((placemark.location?.coordinate.longitude)!)"
                 
             })
         }

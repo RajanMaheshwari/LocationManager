@@ -48,12 +48,12 @@ class ViewController: UIViewController {
                 self.alertMessage(message: (error?.localizedDescription)!, buttonText: "OK", completionHandler: nil)
                 return
             }
-            guard let _ = location else {
+            guard let location = location else {
                 self.alertMessage(message: "Unable to fetch location", buttonText: "OK", completionHandler: nil)
                 return
             }
-            self.latitudeLabel.text = "\((location?.coordinate.latitude)!)"
-            self.longitudeLabel.text = "\((location?.coordinate.longitude)!)"
+            self.latitudeLabel.text = "\(location.coordinate.latitude)"
+            self.longitudeLabel.text = "\(location.coordinate.longitude))"
 
         }
     }
@@ -68,7 +68,7 @@ class ViewController: UIViewController {
                 self.alertMessage(message: (error?.localizedDescription)!, buttonText: "OK", completionHandler: nil)
                 return
             }
-            guard let _ = location else {
+            guard let location = location else {
                 return
             }
             let mapVC = self.storyboard?.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
@@ -88,26 +88,26 @@ class ViewController: UIViewController {
                 self.alertMessage(message: (error?.localizedDescription)!, buttonText: "OK", completionHandler: nil)
                 return
             }
-            guard let _ = location else {
+            guard let location = location, let placemark = placemark else {
                 return
             }
-            print(placemark?.administrativeArea ?? "")
-            print(placemark?.name ?? "")
-            print(placemark?.country ?? "")
-            print(placemark?.areasOfInterest ?? "")
-            print(placemark?.isoCountryCode ?? "")
-            print(placemark?.location ?? "")
-            print(placemark?.locality ?? "")
-            print(placemark?.subLocality ?? "")
-            print(placemark?.postalCode ?? "")
-            print(placemark?.timeZone ?? "")
-            print(placemark?.addressDictionary?.description ?? "")
+            print(placemark.administrativeArea ?? "")
+            print(placemark.name ?? "")
+            print(placemark.country ?? "")
+            print(placemark.areasOfInterest ?? "")
+            print(placemark.isoCountryCode ?? "")
+            print(placemark.location ?? "")
+            print(placemark.locality ?? "")
+            print(placemark.subLocality ?? "")
+            print(placemark.postalCode ?? "")
+            print(placemark.timeZone ?? "")
+            print(placemark.addressDictionary?.description ?? "")
 
-            let address = placemark?.addressDictionary?["FormattedAddressLines"] as! NSArray
+            let address = placemark.addressDictionary?["FormattedAddressLines"] as! NSArray
             self.addressLabel.text = address.description
             
-            self.latitudeLabel.text = "\((placemark?.location?.coordinate.latitude)!)"
-            self.longitudeLabel.text = "\((placemark?.location?.coordinate.longitude)!)"
+            self.latitudeLabel.text = "\(location.coordinate.latitude)"
+            self.longitudeLabel.text = "\(location.coordinate.longitude)"
         }
     }
     

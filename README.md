@@ -14,10 +14,12 @@ In order to just get your current Latitude and Longitude
 
 ```swift
 LocationManager.shared.getLocation { (location:CLLocation?, error:NSError?) in
+
             if let error = error {
                 print(error.localizedDescription)
                 return
             }
+            
             guard let location = location else {
                 return
             }
@@ -34,6 +36,7 @@ LocationManager.shared.getCurrentReverseGeoCodedLocation { (location:CLLocation?
                 print(error.localizedDescription)
                 return
             }
+            
             guard let location = location, let placemark = placemark else {
                 return
             }
@@ -56,13 +59,16 @@ You can also reverse geocode any address just by providing latitude and longitud
 let customLocation = CLLocation(latitude: 22.76456, longitude: 77.42323)
         
 LocationManager.shared.getReverseGeoCodedLocation(location: customLocation) { (location:CLLocation?, placemark:CLPlacemark?, error:NSError?) in
+
             if let error = error {
                 print(error.localizedDescription)
                 return
             }
+            
             guard let location = location, let placemark = placemark else {
                 return
             }
+            
             //We get the complete placemark and can fetch anything from CLPlacemark
             print(placemark.addressDictionary?.description)
         }

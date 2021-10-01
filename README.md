@@ -40,6 +40,7 @@ LocationManager.shared.getCurrentReverseGeoCodedLocation { (location:CLLocation?
             guard let location = location, let placemark = placemark else {
                 return
             }
+            
             //We get the complete placemark and can fetch anything from CLPlacemark
             print(placemark.addressDictionary?.description)
         }

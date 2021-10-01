@@ -14,8 +14,8 @@ In order to just get your current Latitude and Longitude
 
 ```swift
 LocationManager.shared.getLocation { (location:CLLocation?, error:NSError?) in
-            if error != nil {
-                print(error?.localizedDescription)
+            if let error = error {
+                print(error.localizedDescription)
                 return
             }
             guard let location = location else {
@@ -30,8 +30,8 @@ For getting the current address we can call the ```getCurrentReverseGeoCodedLoca
 ```swift
 LocationManager.shared.getCurrentReverseGeoCodedLocation { (location:CLLocation?, placemark:CLPlacemark?, error:NSError?) in
             
-            if error != nil {
-                print(error?.localizedDescription)
+            if let error = error {
+                print(error.localizedDescription)
                 return
             }
             guard let location = location, let placemark = placemark else {
@@ -56,8 +56,8 @@ You can also reverse geocode any address just by providing latitude and longitud
 let customLocation = CLLocation(latitude: 22.76456, longitude: 77.42323)
         
 LocationManager.shared.getReverseGeoCodedLocation(location: customLocation) { (location:CLLocation?, placemark:CLPlacemark?, error:NSError?) in
-            if error != nil {
-                print(error?.localizedDescription)
+            if let error = error {
+                print(error.localizedDescription)
                 return
             }
             guard let location = location, let placemark = placemark else {
@@ -79,8 +79,8 @@ You can now get the Latitude and Longitude of an address entered as a string
 ```swift
 LocationManager.shared.getReverseGeoCodedLocation(address: yourAddress, completionHandler: { (location:CLLocation?, placemark:CLPlacemark?, error:NSError?) in
                 
-            if error != nil {
-                print((error?.localizedDescription)!)
+            if let error = error {
+                print(error.localizedDescription)
                 return
             }
                 

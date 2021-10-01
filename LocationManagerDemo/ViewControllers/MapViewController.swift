@@ -13,6 +13,7 @@ class MapViewController: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
     var location:CLLocation?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,13 +21,17 @@ class MapViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
         //Setting Region
         let center = CLLocationCoordinate2D(latitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         
         self.mapView.setRegion(region, animated: true)
         
-        //Adding Pin
+        self.addPin()
+    }
+    
+    func addPin() {
         let pinLocation : CLLocationCoordinate2D = CLLocationCoordinate2DMake((location?.coordinate.latitude)!, (location?.coordinate.longitude)!)
         let objectAnnotation = MKPointAnnotation()
         objectAnnotation.coordinate = pinLocation

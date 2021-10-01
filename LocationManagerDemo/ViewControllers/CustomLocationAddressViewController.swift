@@ -45,8 +45,8 @@ class CustomLocationAddressViewController: UIViewController {
             let customLocation = CLLocation(latitude: lat!, longitude: long!)
             
             LocationManager.shared.getReverseGeoCodedLocation(location: customLocation) { (location:CLLocation?, placemark:CLPlacemark?, error:NSError?) in
-                if error != nil {
-                    self.alertMessage(message: (error?.localizedDescription)!, buttonText: "OK", completionHandler: nil)
+                if let error = error {
+                    self.alertMessage(message: error.localizedDescription, buttonText: "OK", completionHandler: nil)
                     return
                 }
                 guard let _ = location, let placemark = placemark else {

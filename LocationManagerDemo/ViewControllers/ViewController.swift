@@ -54,10 +54,11 @@ class ViewController: UIViewController {
 
         LocationManager.shared.getLocation { (location:CLLocation?, error:NSError?) in
             
-            if error != nil {
-                self.alertMessage(message: (error?.localizedDescription)!, buttonText: "OK", completionHandler: nil)
+            if let error = error {
+                self.alertMessage(message: error.localizedDescription, buttonText: "OK", completionHandler: nil)
                 return
             }
+
             guard let location = location else {
                 self.alertMessage(message: "Unable to fetch location", buttonText: "OK", completionHandler: nil)
                 return
@@ -74,10 +75,11 @@ class ViewController: UIViewController {
 
         LocationManager.shared.getLocation { (location:CLLocation?, error:NSError?) in
             
-            if error != nil {
-                self.alertMessage(message: (error?.localizedDescription)!, buttonText: "OK", completionHandler: nil)
+            if let error = error {
+                self.alertMessage(message: error.localizedDescription, buttonText: "OK", completionHandler: nil)
                 return
             }
+            
             guard let location = location else {
                 return
             }
@@ -94,10 +96,12 @@ class ViewController: UIViewController {
         self.resetLabels()
         
         LocationManager.shared.getCurrentReverseGeoCodedLocation { (location:CLLocation?, placemark:CLPlacemark?, error:NSError?) in
-            if error != nil {
-                self.alertMessage(message: (error?.localizedDescription)!, buttonText: "OK", completionHandler: nil)
+            
+            if let error = error {
+                self.alertMessage(message: error.localizedDescription, buttonText: "OK", completionHandler: nil)
                 return
             }
+            
             guard let location = location, let placemark = placemark else {
                 return
             }

@@ -28,8 +28,8 @@ class CustomAddressViewController: UIViewController {
         if addressTextView.text.count > 0 {
             LocationManager.shared.getReverseGeoCodedLocation(address: addressTextView.text!, completionHandler: { (location:CLLocation?, placemark:CLPlacemark?, error:NSError?) in
                 
-                if error != nil {
-                    print((error?.localizedDescription)!)
+                if let error = error {
+                    print(error.localizedDescription)
                     return
                 }
                 

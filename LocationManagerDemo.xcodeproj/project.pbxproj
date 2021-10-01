@@ -46,8 +46,8 @@
 		E5238F2A1DBB83D30051907A /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				E5238F2B1DBB83D30051907A /* MapViewController.swift */,
 				E5238F2C1DBB83D30051907A /* ViewController.swift */,
+				E5238F2B1DBB83D30051907A /* MapViewController.swift */,
 				E5238F2F1DBB971D0051907A /* CustomLocationAddressViewController.swift */,
 				E562A7D71DC5132700FF86F1 /* CustomAddressViewController.swift */,
 			);

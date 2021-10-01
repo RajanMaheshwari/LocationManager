@@ -107,5 +107,3 @@ Now you can check whether the location services are enabled or not using
 ```LocationManager.shared.isLocationEnabled()```
 
 It returns a Bool, true if services are enabled, false if they are disabled.
-
-CocoaPods and Carthage support coming soon!!

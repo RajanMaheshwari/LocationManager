@@ -28,6 +28,7 @@ final class LocationManager: NSObject {
     private var geoLocationCompletionHandler: ReverseGeoLocationClosure?
     
     private var locationManager:CLLocationManager?
+    
     var locationAccuracy = kCLLocationAccuracyBest
     
     private var lastLocation:CLLocation?
@@ -49,14 +50,24 @@ final class LocationManager: NSObject {
     
     //MARK:- Private Methods
     private func setupLocationManager() {
-        
+        if locationManager != nil {
+            if #available(iOS 14.0, *) {
+                self.check(status: locationManager?.authorizationStatus)
+            } else {
+                self.check(status: CLLocationManager.authorizationStatus())
+                // Fallback on earlier versions
+            }
+            return
+        }
         //Setting of location manager
-        locationManager = nil
         locationManager = CLLocationManager()
-        locationManager?.desiredAccuracy = locationAccuracy
         locationManager?.delegate = self
-        locationManager?.requestWhenInUseAuthorization()
-        
+        locationManager?.desiredAccuracy = locationAccuracy
+        if #available(iOS 14.0, *) {
+            self.check(status: locationManager?.authorizationStatus)
+        } else {
+            self.check(status: CLLocationManager.authorizationStatus())
+        }
     }
     
     private func destroyLocationManager() {
@@ -259,6 +270,55 @@ final class LocationManager: NSObject {
         locationManager = nil
         reverseGeocoding = false
     }
+    
+    private func check(status: CLAuthorizationStatus?) {
+        guard let status = status else { return }
+        switch status {
+            
+        case .authorizedWhenInUse,.authorizedAlways:
+            self.locationManager?.startUpdatingLocation()
+            
+        case .denied:
+            let deniedError = NSError(
+                domain: self.classForCoder.description(),
+                code:Int(CLAuthorizationStatus.denied.rawValue),
+                userInfo:
+                [NSLocalizedDescriptionKey:LocationErrors.denied.rawValue,
+                 NSLocalizedFailureReasonErrorKey:LocationErrors.denied.rawValue,
+                 NSLocalizedRecoverySuggestionErrorKey:LocationErrors.denied.rawValue])
+            
+            if reverseGeocoding {
+                didCompleteGeocoding(location: nil, placemark: nil, error: deniedError)
+            } else {
+                didComplete(location: nil,error: deniedError)
+            }
+            
+        case .restricted:
+            if reverseGeocoding {
+                didComplete(location: nil,error: NSError(
+                    domain: self.classForCoder.description(),
+                    code:Int(CLAuthorizationStatus.restricted.rawValue),
+                    userInfo: nil))
+            } else {
+                didComplete(location: nil,error: NSError(
+                    domain: self.classForCoder.description(),
+                    code:Int(CLAuthorizationStatus.restricted.rawValue),
+                    userInfo: nil))
+            }
+            
+        case .notDetermined:
+            self.locationManager?.requestWhenInUseAuthorization()
+            
+        @unknown default:
+                didComplete(location: nil,error: NSError(
+                domain: self.classForCoder.description(),
+                code:Int(CLAuthorizationStatus.denied.rawValue),
+                userInfo:
+                [NSLocalizedDescriptionKey:LocationErrors.unknown.rawValue,
+                 NSLocalizedFailureReasonErrorKey:LocationErrors.unknown.rawValue,
+                 NSLocalizedRecoverySuggestionErrorKey:LocationErrors.unknown.rawValue]))
+        }
+    }
 }
 
 extension LocationManager: CLLocationManagerDelegate {
@@ -286,52 +346,7 @@ extension LocationManager: CLLocationManagerDelegate {
        }
        
        func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-           
-           switch status {
-               
-           case .authorizedWhenInUse,.authorizedAlways:
-               self.locationManager?.startUpdatingLocation()
-               
-           case .denied:
-               let deniedError = NSError(
-                   domain: self.classForCoder.description(),
-                   code:Int(CLAuthorizationStatus.denied.rawValue),
-                   userInfo:
-                   [NSLocalizedDescriptionKey:LocationErrors.denied.rawValue,
-                    NSLocalizedFailureReasonErrorKey:LocationErrors.denied.rawValue,
-                    NSLocalizedRecoverySuggestionErrorKey:LocationErrors.denied.rawValue])
-               
-               if reverseGeocoding {
-                   didCompleteGeocoding(location: nil, placemark: nil, error: deniedError)
-               } else {
-                   didComplete(location: nil,error: deniedError)
-               }
-               
-           case .restricted:
-               if reverseGeocoding {
-                   didComplete(location: nil,error: NSError(
-                       domain: self.classForCoder.description(),
-                       code:Int(CLAuthorizationStatus.restricted.rawValue),
-                       userInfo: nil))
-               } else {
-                   didComplete(location: nil,error: NSError(
-                       domain: self.classForCoder.description(),
-                       code:Int(CLAuthorizationStatus.restricted.rawValue),
-                       userInfo: nil))
-               }
-               
-           case .notDetermined:
-               self.locationManager?.requestLocation()
-               
-           @unknown default:
-                   didComplete(location: nil,error: NSError(
-                   domain: self.classForCoder.description(),
-                   code:Int(CLAuthorizationStatus.denied.rawValue),
-                   userInfo:
-                   [NSLocalizedDescriptionKey:LocationErrors.unknown.rawValue,
-                    NSLocalizedFailureReasonErrorKey:LocationErrors.unknown.rawValue,
-                    NSLocalizedRecoverySuggestionErrorKey:LocationErrors.unknown.rawValue]))
-           }
+           self.check(status: status)
        }
        
        func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

@@ -62,11 +62,9 @@ class CustomLocationAddressViewController: UIViewController {
                 print(placemark.subLocality ?? "")
                 print(placemark.postalCode ?? "")
                 print(placemark.timeZone ?? "")
-                print(placemark.addressDictionary?.description ?? "")
                 
-                let address = placemark.addressDictionary?["FormattedAddressLines"] as! NSArray
-                self.addressLabel.text = address.description
-                
+                self.addressLabel.text = placemark.description
+
             }
         } else {
             self.alertMessage(message: "Lat/Long can't be empty", buttonText: "OK", completionHandler: { 

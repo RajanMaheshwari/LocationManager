@@ -115,10 +115,8 @@ class ViewController: UIViewController {
             print(placemark.subLocality ?? "")
             print(placemark.postalCode ?? "")
             print(placemark.timeZone ?? "")
-            print(placemark.addressDictionary?.description ?? "")
 
-            let address = placemark.addressDictionary?["FormattedAddressLines"] as! NSArray
-            self.addressLabel.text = address.description
+            self.addressLabel.text = placemark.description
             
             self.latitudeLabel.text = "\(location.coordinate.latitude)"
             self.longitudeLabel.text = "\(location.coordinate.longitude)"

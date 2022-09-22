@@ -3,7 +3,7 @@ Location Manager is a library written in Swift for iOS which handles the locatio
 
 #Requirements
 
-iOS 10.0+<br>
+iOS 11.0+<br>
 Xcode 11.0+<br>
 Swift 5.0+
 

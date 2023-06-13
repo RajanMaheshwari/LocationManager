@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B4CF0B8E2A390BCB0095A430 /* UIView+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CF0B8D2A390BCB0095A430 /* UIView+Addition.swift */; };
+		B4CF0B902A390BD50095A430 /* UIViewController+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CF0B8F2A390BD50095A430 /* UIViewController+Addition.swift */; };
 		E5238F2D1DBB83D30051907A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5238F2B1DBB83D30051907A /* MapViewController.swift */; };
 		E5238F2E1DBB83D30051907A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5238F2C1DBB83D30051907A /* ViewController.swift */; };
 		E5238F301DBB971D0051907A /* CustomLocationAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5238F2F1DBB971D0051907A /* CustomLocationAddressViewController.swift */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B4CF0B8D2A390BCB0095A430 /* UIView+Addition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Addition.swift"; sourceTree = "<group>"; };
+		B4CF0B8F2A390BD50095A430 /* UIViewController+Addition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Addition.swift"; sourceTree = "<group>"; };
 		E5238F2B1DBB83D30051907A /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		E5238F2C1DBB83D30051907A /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E5238F2F1DBB971D0051907A /* CustomLocationAddressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLocationAddressViewController.swift; sourceTree = "<group>"; };
@@ -43,6 +47,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B4CF0B8C2A390BB60095A430 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B4CF0B8D2A390BCB0095A430 /* UIView+Addition.swift */,
+				B4CF0B8F2A390BD50095A430 /* UIViewController+Addition.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		E5238F2A1DBB83D30051907A /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +94,7 @@
 		E582B5E51DBB817B0002D448 /* LocationManagerDemo */ = {
 			isa = PBXGroup;
 			children = (
+				B4CF0B8C2A390BB60095A430 /* Extensions */,
 				E562A7DC1DC521EC00FF86F1 /* LocationManager */,
 				E5238F2A1DBB83D30051907A /* ViewControllers */,
 				E582B5E61DBB817B0002D448 /* AppDelegate.swift */,
@@ -171,6 +185,8 @@
 				E562A7DE1DC521EC00FF86F1 /* LocationManager.swift in Sources */,
 				E5238F2E1DBB83D30051907A /* ViewController.swift in Sources */,
 				E562A7D81DC5132700FF86F1 /* CustomAddressViewController.swift in Sources */,
+				B4CF0B8E2A390BCB0095A430 /* UIView+Addition.swift in Sources */,
+				B4CF0B902A390BD50095A430 /* UIViewController+Addition.swift in Sources */,
 				E5238F301DBB971D0051907A /* CustomLocationAddressViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

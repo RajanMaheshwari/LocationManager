@@ -17,8 +17,12 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         self.title = "Location Manager"
+        self.setupNav()
+    }
+    
+    // MARK: - Private Methods
+    private func setupNav() {
         if #available(iOS 13.0, *) {
             let appearance = UINavigationBarAppearance()
             appearance.configureWithOpaqueBackground()
@@ -30,42 +34,37 @@ class ViewController: UIViewController {
         }
     }
     
-    func resetLabels() {
-        latitudeLabel.text = "Latitude"
-        longitudeLabel.text = "Longitude"
-        addressLabel.text = "Address"
-        
+    private func resetLabels() {
+        self.latitudeLabel.text = "Latitude"
+        self.longitudeLabel.text = "Longitude"
+        self.addressLabel.text = "Address"
     }
     
-    func alertMessage(message:String,buttonText:String,completionHandler:(()->())?) {
-        let alert = UIAlertController(title: "Location", message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: buttonText, style: .default) { (action:UIAlertAction) in
-            completionHandler?()
-        }
-        alert.addAction(action)
-        self.present(alert, animated: true, completion: nil)
+    private func goToMapScreen(location: CLLocation) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
+        vc.location = location
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    //MARK:- IBActions
-
+    // MARK: -  IBActions
+    
     @IBAction func getCurrentLocationButtonPressed(_ sender: AnyObject) {
         
         self.resetLabels()
 
-        LocationManager.shared.getLocation { (location:CLLocation?, error:NSError?) in
+        LocationManager.shared.getLocation { [weak self] location, error in
             
             if let error = error {
-                self.alertMessage(message: error.localizedDescription, buttonText: "OK", completionHandler: nil)
+                self?.alertMessage(message: error.localizedDescription, buttonText: "OK", completionHandler: nil)
                 return
             }
 
             guard let location = location else {
-                self.alertMessage(message: "Unable to fetch location", buttonText: "OK", completionHandler: nil)
+                self?.alertMessage(message: "Unable to fetch location", buttonText: "OK", completionHandler: nil)
                 return
             }
-            self.latitudeLabel.text = "\(location.coordinate.latitude)"
-            self.longitudeLabel.text = "\(location.coordinate.longitude)"
-
+            self?.latitudeLabel.text = "Latitude: \(location.coordinate.latitude)"
+            self?.longitudeLabel.text = "Longitude: \(location.coordinate.longitude)"
         }
     }
 
@@ -73,19 +72,17 @@ class ViewController: UIViewController {
         
         self.resetLabels()
 
-        LocationManager.shared.getLocation { (location:CLLocation?, error:NSError?) in
+        LocationManager.shared.getLocation { [weak self] location, error in
             
             if let error = error {
-                self.alertMessage(message: error.localizedDescription, buttonText: "OK", completionHandler: nil)
+                self?.alertMessage(message: error.localizedDescription, buttonText: "OK", completionHandler: nil)
                 return
             }
             
             guard let location = location else {
                 return
             }
-            let mapVC = self.storyboard?.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
-            mapVC.location = location
-            self.navigationController?.pushViewController(mapVC, animated: true)
+            self?.goToMapScreen(location: location)
         }
     }
     
@@ -95,10 +92,10 @@ class ViewController: UIViewController {
         
         self.resetLabels()
         
-        LocationManager.shared.getCurrentReverseGeoCodedLocation { (location:CLLocation?, placemark:CLPlacemark?, error:NSError?) in
+        LocationManager.shared.getCurrentReverseGeoCodedLocation { [weak self] location, placemark, error in
             
             if let error = error {
-                self.alertMessage(message: error.localizedDescription, buttonText: "OK", completionHandler: nil)
+                self?.alertMessage(message: error.localizedDescription, buttonText: "OK", completionHandler: nil)
                 return
             }
             
@@ -116,10 +113,10 @@ class ViewController: UIViewController {
             print(placemark.postalCode ?? "")
             print(placemark.timeZone ?? "")
 
-            self.addressLabel.text = placemark.description
+            self?.addressLabel.text = "The address fetched is: \n\n" + placemark.description
             
-            self.latitudeLabel.text = "\(location.coordinate.latitude)"
-            self.longitudeLabel.text = "\(location.coordinate.longitude)"
+            self?.latitudeLabel.text = "Latitude: \(location.coordinate.latitude)"
+            self?.longitudeLabel.text = "Longitude: \(location.coordinate.longitude)"
         }
     }
     
@@ -132,4 +129,3 @@ class ViewController: UIViewController {
     }
     
 }
-

@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension ViewController {
+extension UIViewController {
     
     func alertMessage(message:String, buttonText:String, completionHandler: (()->())?) {
         let alert = UIAlertController(title: "Location", message: message, preferredStyle: .alert)

@@ -246,46 +246,71 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="New Delhi" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="UFq-AK-zfN">
-                                <rect key="frame" x="94" y="20" width="240" height="128"/>
+                                <rect key="frame" x="20" y="20" width="388" height="128"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="2FV-Z7-ibQ"/>
                                     <constraint firstAttribute="height" constant="128" id="JLN-MH-ncZ"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.27031415019999999" green="0.53397566819999998" blue="0.2487044645" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="delegate" destination="WEl-vj-abJ" id="l8v-gM-zOE"/>
                                 </connections>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Latitude" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7jA-WI-p5k">
-                                <rect key="frame" x="182.66666666666666" y="187" width="63" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="181.33333333333334" y="187" width="65.666666666666657" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Longitude" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vDL-74-ODc">
-                                <rect key="frame" x="175.66666666666666" y="225" width="77" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="174" y="225" width="80" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UDg-82-Hdz">
-                                <rect key="frame" x="169.66666666666666" y="286" width="88.999999999999972" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RPI-34-BHf">
+                                <rect key="frame" x="139" y="266" width="150" height="40"/>
+                                <color key="backgroundColor" systemColor="linkColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="QJ3-KF-dAM"/>
+                                    <constraint firstAttribute="width" constant="150" id="Quj-LS-iV8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Get Lat/Long"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="getLatLongButtonPressed:" destination="WEl-vj-abJ" eventType="touchUpInside" id="K3u-iJ-gnl"/>
+                                    <action selector="getCurrentLocationButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yMr-se-Pxx"/>
+                                    <action selector="getLatLongButtonPressed:" destination="WEl-vj-abJ" eventType="touchUpInside" id="D9f-r2-nVj"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="7jA-WI-p5k" firstAttribute="centerX" secondItem="UFq-AK-zfN" secondAttribute="centerX" id="7ay-la-1mG"/>
-                            <constraint firstItem="UDg-82-Hdz" firstAttribute="top" secondItem="vDL-74-ODc" secondAttribute="bottom" constant="40" id="IWh-9E-jfN"/>
                             <constraint firstItem="vDL-74-ODc" firstAttribute="top" secondItem="7jA-WI-p5k" secondAttribute="bottom" constant="17" id="O5T-II-xep"/>
+                            <constraint firstItem="UFq-AK-zfN" firstAttribute="leading" secondItem="TJ5-wI-ZSk" secondAttribute="leading" constant="20" id="XLS-pK-PW0"/>
                             <constraint firstItem="vDL-74-ODc" firstAttribute="centerX" secondItem="7jA-WI-p5k" secondAttribute="centerX" id="Y78-2N-zZ8"/>
-                            <constraint firstItem="UDg-82-Hdz" firstAttribute="centerX" secondItem="vDL-74-ODc" secondAttribute="centerX" id="huX-7m-iMh"/>
+                            <constraint firstItem="RPI-34-BHf" firstAttribute="centerX" secondItem="TJ5-wI-ZSk" secondAttribute="centerX" id="bUR-Wm-xXC"/>
                             <constraint firstItem="UFq-AK-zfN" firstAttribute="top" secondItem="28Y-Od-rnj" secondAttribute="bottom" constant="20" id="kCy-VX-zsb"/>
+                            <constraint firstItem="RPI-34-BHf" firstAttribute="top" secondItem="vDL-74-ODc" secondAttribute="bottom" constant="20" id="qjF-0C-U8N"/>
+                            <constraint firstAttribute="trailing" secondItem="UFq-AK-zfN" secondAttribute="trailing" constant="20" id="vka-SR-9i8"/>
                             <constraint firstItem="UFq-AK-zfN" firstAttribute="centerX" secondItem="TJ5-wI-ZSk" secondAttribute="centerX" id="y9f-7B-ObK"/>
                             <constraint firstItem="7jA-WI-p5k" firstAttribute="top" secondItem="UFq-AK-zfN" secondAttribute="bottom" constant="39" id="zXg-1N-8Zf"/>
                         </constraints>
@@ -314,48 +339,91 @@
                         <rect key="frame" x="0.0" y="0.0" width="428" height="835"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Enter latitude" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6p1-UC-ee1">
-                                <rect key="frame" x="110" y="75" width="208" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter latitude" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6p1-UC-ee1" customClass="TextFieldWithPadding" customModule="LocationManagerDemo" customModuleProvider="target">
+                                <rect key="frame" x="64" y="75" width="300" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="Mbq-hG-fBj"/>
-                                    <constraint firstAttribute="width" constant="208" id="n4C-B9-NuF"/>
+                                    <constraint firstAttribute="height" constant="40" id="Mbq-hG-fBj"/>
+                                    <constraint firstAttribute="width" constant="300" id="n4C-B9-NuF"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.27031415019999999" green="0.53397566819999998" blue="0.2487044645" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Enter Longitude" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="upP-v9-23C">
-                                <rect key="frame" x="110" y="130" width="208" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Longitude" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="upP-v9-23C" customClass="TextFieldWithPadding" customModule="LocationManagerDemo" customModuleProvider="target">
+                                <rect key="frame" x="64" y="140" width="300" height="40"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.27031415019999999" green="0.53397566819999998" blue="0.2487044645" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g9T-G3-Qfo">
-                                <rect key="frame" x="171.66666666666666" y="202" width="84.999999999999972" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SOs-01-9tM">
+                                <rect key="frame" x="64" y="200" width="300" height="40"/>
+                                <color key="backgroundColor" systemColor="linkColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="AKb-pT-TXJ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Get Address"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="getAddressButton:" destination="Mhv-Ab-qZX" eventType="touchUpInside" id="adh-wD-nrr"/>
+                                    <action selector="getAddressButton:" destination="Mhv-Ab-qZX" eventType="touchUpInside" id="A8q-h5-24k"/>
+                                    <action selector="getCurrentLocationButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="t5H-x6-77F"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P0G-R3-pMm">
-                                <rect key="frame" x="16" y="242" width="396" height="200"/>
+                                <rect key="frame" x="16" y="260" width="396" height="40"/>
+                                <color key="backgroundColor" red="0.27031415019999999" green="0.53397566819999998" blue="0.2487044645" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="nad-ie-Q2P"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="nad-ie-Q2P"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="P0G-R3-pMm" firstAttribute="top" secondItem="g9T-G3-Qfo" secondAttribute="bottom" constant="10" id="CfS-oj-4MF"/>
+                            <constraint firstItem="SOs-01-9tM" firstAttribute="top" secondItem="upP-v9-23C" secondAttribute="bottom" constant="20" id="Ckb-KL-1h0"/>
                             <constraint firstItem="upP-v9-23C" firstAttribute="width" secondItem="6p1-UC-ee1" secondAttribute="width" id="FN8-wL-OTq"/>
                             <constraint firstItem="6p1-UC-ee1" firstAttribute="top" secondItem="nvj-ow-V5E" secondAttribute="bottom" constant="75" id="Fow-Ba-iN4"/>
                             <constraint firstItem="upP-v9-23C" firstAttribute="centerX" secondItem="6p1-UC-ee1" secondAttribute="centerX" id="JVy-mL-GgY"/>
                             <constraint firstItem="upP-v9-23C" firstAttribute="top" secondItem="6p1-UC-ee1" secondAttribute="bottom" constant="25" id="LUV-pe-GlN"/>
+                            <constraint firstItem="SOs-01-9tM" firstAttribute="leading" secondItem="6p1-UC-ee1" secondAttribute="leading" id="NpT-38-6Tv"/>
                             <constraint firstAttribute="trailing" secondItem="P0G-R3-pMm" secondAttribute="trailing" constant="16" id="PhD-ft-mnn"/>
-                            <constraint firstItem="g9T-G3-Qfo" firstAttribute="centerX" secondItem="upP-v9-23C" secondAttribute="centerX" id="UbZ-fs-LKx"/>
+                            <constraint firstItem="SOs-01-9tM" firstAttribute="trailing" secondItem="6p1-UC-ee1" secondAttribute="trailing" id="h5Y-uU-VnS"/>
+                            <constraint firstItem="SOs-01-9tM" firstAttribute="centerX" secondItem="9mf-Z0-NHy" secondAttribute="centerX" id="h6v-eJ-S3H"/>
                             <constraint firstItem="upP-v9-23C" firstAttribute="height" secondItem="6p1-UC-ee1" secondAttribute="height" id="prS-BJ-o0J"/>
-                            <constraint firstItem="g9T-G3-Qfo" firstAttribute="top" secondItem="upP-v9-23C" secondAttribute="bottom" constant="42" id="rQs-Or-OgA"/>
+                            <constraint firstItem="P0G-R3-pMm" firstAttribute="top" secondItem="SOs-01-9tM" secondAttribute="bottom" constant="20" id="szD-aN-7aX"/>
+                            <constraint firstItem="af5-qL-dNK" firstAttribute="top" relation="greaterThanOrEqual" secondItem="P0G-R3-pMm" secondAttribute="bottom" constant="8" id="xtb-uP-m1f"/>
                             <constraint firstItem="6p1-UC-ee1" firstAttribute="centerX" secondItem="9mf-Z0-NHy" secondAttribute="centerX" id="xu9-UH-lzL"/>
                             <constraint firstItem="P0G-R3-pMm" firstAttribute="leading" secondItem="9mf-Z0-NHy" secondAttribute="leading" constant="16" id="xxd-Cs-75t"/>
                         </constraints>

@@ -11,45 +11,34 @@ import CoreLocation
 
 class CustomLocationAddressViewController: UIViewController {
     @IBOutlet weak var addressLabel: UILabel!
-
-    @IBOutlet weak var longitudeTextField: UITextField!
+    @IBOutlet weak var longitudeTextField: TextFieldWithPadding!
+    @IBOutlet weak var latitudeTextField: TextFieldWithPadding!
     
-    @IBOutlet weak var latitudeTextField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-        addressLabel.text = "Address"
-
-        // Do any additional setup after loading the view.
+        self.addressLabel.text = "Address"
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
-    }
-    
-    func alertMessage(message:String,buttonText:String,completionHandler:(()->())?) {
-        let alert = UIAlertController(title: "Location", message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: buttonText, style: .default) { (action:UIAlertAction) in
-            completionHandler?()
-        }
-        alert.addAction(action)
-        self.present(alert, animated: true, completion: nil)
     }
 
     @IBAction func getAddressButton(_ sender: AnyObject) {
         
         self.view.endEditing(true)
         addressLabel.text = "Address"
-        let lat  = Double(latitudeTextField.text!)
-        let long = Double(longitudeTextField.text!)
-        if let _ = lat, let _ = long {
-            let customLocation = CLLocation(latitude: lat!, longitude: long!)
+        let latitude  = Double(latitudeTextField.text!)
+        let longtitude = Double(longitudeTextField.text!)
+        if let latitude, let longtitude {
+            let customLocation = CLLocation(latitude: latitude, longitude: longtitude)
             
-            LocationManager.shared.getReverseGeoCodedLocation(location: customLocation) { (location:CLLocation?, placemark:CLPlacemark?, error:NSError?) in
-                if let error = error {
-                    self.alertMessage(message: error.localizedDescription, buttonText: "OK", completionHandler: nil)
+            LocationManager.shared.getReverseGeoCodedLocation(location: customLocation) { [weak self] location, placemark, error in
+                if let error {
+                    self?.alertMessage(message: error.localizedDescription, buttonText: "OK", completionHandler: nil)
                     return
                 }
-                guard let _ = location, let placemark = placemark else {
+                guard let _ = location,
+                      let placemark  else {
                     return
                 }
                 print(placemark.administrativeArea ?? "")
@@ -63,15 +52,33 @@ class CustomLocationAddressViewController: UIViewController {
                 print(placemark.postalCode ?? "")
                 print(placemark.timeZone ?? "")
                 
-                self.addressLabel.text = placemark.description
+                self?.addressLabel.text = "The address fetched is:\n\n" + placemark.description
 
             }
         } else {
-            self.alertMessage(message: "Lat/Long can't be empty", buttonText: "OK", completionHandler: { 
+            self.alertMessage(message: "Lat/Long can't be empty", buttonText: "OK", completionHandler: {
                 self.latitudeTextField.becomeFirstResponder()
             })
         }
         
     }
+}
 
+class TextFieldWithPadding: UITextField {
+    var textPadding = UIEdgeInsets(
+        top: 0,
+        left: 20,
+        bottom: 0,
+        right: 20
+    )
+
+    override func textRect(forBounds bounds: CGRect) -> CGRect {
+        let rect = super.textRect(forBounds: bounds)
+        return rect.inset(by: textPadding)
+    }
+
+    override func editingRect(forBounds bounds: CGRect) -> CGRect {
+        let rect = super.editingRect(forBounds: bounds)
+        return rect.inset(by: textPadding)
+    }
 }

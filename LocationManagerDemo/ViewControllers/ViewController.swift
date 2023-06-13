@@ -94,12 +94,13 @@ class ViewController: UIViewController {
         
         LocationManager.shared.getCurrentReverseGeoCodedLocation { [weak self] location, placemark, error in
             
-            if let error = error {
+            if let error {
                 self?.alertMessage(message: error.localizedDescription, buttonText: "OK", completionHandler: nil)
                 return
             }
             
-            guard let location = location, let placemark = placemark else {
+            guard let location,
+                  let placemark else {
                 return
             }
             print(placemark.administrativeArea ?? "")

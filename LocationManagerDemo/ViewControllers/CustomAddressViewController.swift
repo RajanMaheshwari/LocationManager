@@ -12,10 +12,9 @@ import CoreLocation
 class CustomAddressViewController: UIViewController {
 
     @IBOutlet weak var addressTextView: UITextView!
-    
     @IBOutlet weak var latitudeLabel: UILabel!
-    
     @IBOutlet weak var longitudeLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -25,21 +24,21 @@ class CustomAddressViewController: UIViewController {
     }
     
     @IBAction func getLatLongButtonPressed(_ sender: Any) {
-        if addressTextView.text.count > 0 {
-            LocationManager.shared.getReverseGeoCodedLocation(address: addressTextView.text!, completionHandler: { (location:CLLocation?, placemark:CLPlacemark?, error:NSError?) in
+        if !addressTextView.text.isEmpty {
+            LocationManager.shared.getReverseGeoCodedLocation(address: addressTextView.text!, completionHandler: { [weak self] location, placemark, error in
                 
-                if let error = error {
-                    print(error.localizedDescription)
+                if let error {
+                    self?.alertMessage(message: error.localizedDescription, buttonText: "Ok", completionHandler: nil)
                     return
                 }
                 
-                guard let placemark = placemark else {
-                    print("Location can't be fetched")
+                guard let placemark else {
+                    self?.alertMessage(message: "Location can't be fetched", buttonText: "Ok", completionHandler: nil)
                     return
                 }
 
-                self.latitudeLabel.text = "\((placemark.location?.coordinate.latitude)!)"
-                self.longitudeLabel.text = "\((placemark.location?.coordinate.longitude)!)"
+                self?.latitudeLabel.text = "Latitude: \((placemark.location?.coordinate.latitude)!)"
+                self?.longitudeLabel.text = "Longitude: \((placemark.location?.coordinate.longitude)!)"
                 
             })
         }

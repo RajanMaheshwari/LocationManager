@@ -30,7 +30,7 @@ class MapViewController: UIViewController {
         self.addPin()
     }
     
-    func addPin() {
+    private func addPin() {
         let pinLocation : CLLocationCoordinate2D = CLLocationCoordinate2DMake((location?.coordinate.latitude)!, (location?.coordinate.longitude)!)
         let objectAnnotation = MKPointAnnotation()
         objectAnnotation.coordinate = pinLocation
